@@ -1,18 +1,31 @@
-const film = {
+const film1 = {
   title: "Killing of Flower Moon",
   director: "Martin Scorsese",
   times: ["15:35"],
   certificate: "15",
   duration: 112,
 };
-// Goal: Refactor this logic to use a film card template instead.
 
-const filmCard = document
-  .getElementById("film-card-template")
-  .content.cloneNode(true);
+const film2 = {
+  title: "Typist Artist Pirate King",
+  directory: "Carol Morley",
+  times: ["15:00", "20:00"],
+  certificate: "12A",
+  duration: 108,
+};
+// Goal: How to use film card component with an array of films
 
-filmCard.querySelector("h3").textContent = film.title;
-filmCard.querySelector("p").textContent = film.director;
-filmCard.querySelector("p").textContent = film.director;
+// How can we reuse functionality?
 
-document.body.appendChild(filmCard);
+function createFilmCard(film) {
+  const filmCard = document
+    .getElementById("film-card-template")
+    .content.cloneNode(true);
+
+  filmCard.querySelector("h3").textContent = film.title;
+  filmCard.querySelector("p").textContent = film.director;
+
+  return filmCard;
+}
+
+document.body.append(createFilmCard(film1), createFilmCard(film2));
