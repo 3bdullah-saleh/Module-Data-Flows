@@ -1,56 +1,22 @@
-// Given a view of film cards and search box
-// When a user types in the search box
-// Then the view should update to show only matching films.
-
+// To fetch data from a server:
+// Begin with an empty state
 const state = {
-  films: [
-    {
-      title: "Killing of Flower Moon",
-      director: "Martin Scorsese",
-      times: ["15:35"],
-      certificate: "15",
-      duration: 112,
-    },
-    {
-      title: "Typist Artist Pirate King",
-      director: "Carol Morley",
-      times: ["15:00", "20:00"],
-      certificate: "12A",
-      duration: 108,
-    },
-    {
-      title: "Jurassic Park",
-      director: "Steven Spielberg",
-      times: ["15:00", "20:00"],
-      certificate: "12A",
-      duration: 108,
-    },
-    {
-      title: "Friends",
-      director: "?????",
-      times: ["15:00", "20:00"],
-      certificate: "12A",
-      duration: 108,
-    },
-    {
-      title: "Pirates of the Carribean",
-      director: "?????",
-      times: ["15:00", "20:00"],
-      certificate: "12A",
-      duration: 108,
-    },
-  ],
+  films: [],
   searchTerm: "",
 };
-// State: data which may change over time
-// we need films array
-// we need search term
 
-// steps:
-// connect the search term with the film title
-// 1. query for the input element
-// 2. link the input in the box and update searchTerm state
-// 3. filter the films based on the input
+function fetchFilms() {
+  return fetch(
+    "https://programming.codeyourfuture.io/dummy-apis/films.json"
+  ).then(function (data) {
+    return data.json();
+  });
+}
+
+fetchFilms().then(function (films) {
+  state.films = films
+});
+console.log(state, "<----- after fetching")
 
 function createFilmCard(film) {
   const filmCard = document
